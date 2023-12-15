@@ -65,7 +65,7 @@ function Translator() {
 
             <textarea
               className="text-box"
-              placeholder="Enter text in English Language"
+              placeholder="Enter text (Select a languange)"
               onChange={(e) => {
                 setInputText(e.target.value);
                 console.log(inputText);
