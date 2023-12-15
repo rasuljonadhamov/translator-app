@@ -1,8 +1,14 @@
 import { useState } from "react";
+import "./Translator.css";
 
 function Translator() {
   const [translatedText, setTranslatedText] = useState("");
+  const [outputLang, setOutputLang] = useState("ar");
+  const [inputLang, setInputLang] = useState("uz");
+  const [inputText, setInputText] = useState("");
+
   const translate = () => {
+    console.log(outputLang);
     const url =
       "https://google-translate1.p.rapidapi.com/language/translate/v2";
     const options = {
@@ -11,19 +17,20 @@ function Translator() {
         "content-type": "application/x-www-form-urlencoded",
         "Accept-Encoding": "application/gzip",
 
-        "X-RapidAPI-Key": "b1350477bamsh9fd0f126c02870ep11df03jsn1fd0c3303aaf",
+        "X-RapidAPI-Key": "2897b51a3amshe30e9647c4cd34ep1f4de4jsn1425aa745979",
         "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
       },
       body: new URLSearchParams({
-        q: "Hello, world!",
-        target: "uz",
-        source: "en",
+        q: `${inputText}`,
+        target: outputLang,
+        source: inputLang,
       }),
     };
 
     fetch(url, options)
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         const { data } = res;
         const { translations } = data;
         const transWord = translations[0].translatedText;
@@ -44,9 +51,25 @@ function Translator() {
             </button>
           </div>
           <form className="input-form">
+            <select
+              name="languages"
+              id="languages"
+              className="form-select form-select-sm"
+              onChange={(e) => setInputLang(e.target.value)}
+            >
+              <option value="uz">Uzbekcha</option>
+              <option value="en">English</option>
+              <option value="fr">France</option>
+              <option value="ru">Russia</option>
+            </select>
+
             <textarea
-              className="tex-box"
-              placeholder="Enter text (any languange)"
+              className="text-box"
+              placeholder="Enter text in English Language"
+              onChange={(e) => {
+                setInputText(e.target.value);
+                console.log(inputText);
+              }}
             ></textarea>
           </form>
         </div>
@@ -56,14 +79,21 @@ function Translator() {
               name="languages"
               id="languages"
               className="form-select form-select-sm"
+              onChange={(e) => setOutputLang(e.target.value)}
             >
               <option value="ar">Arabic</option>
               <option value="en">English</option>
               <option value="fr">France</option>
               <option value="ru">Russia</option>
             </select>
-            <p className="text-box output-box">Output Text: {translatedText}</p>
           </div>
+          <p className="text-box output-box">
+            {translatedText === "" ? (
+              <span className="output-placeholder">Select a language</span>
+            ) : (
+              translatedText
+            )}
+          </p>
         </div>
       </div>
     </div>
