@@ -123,7 +123,6 @@ function Translator() {
             <button className="btn-like" onClick={incrementLikes}>
               Like
             </button>
-            
           </div>
         </div>
       </div>
