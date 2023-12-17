@@ -1,6 +1,16 @@
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+}
+
 .translator {
   width: 80%;
   margin-left: 10%;
+}
+
+.calculator {
+  padding-top: 50px;
+  padding-left: 100px;
 }
 
 .row-wrapper {
@@ -18,6 +28,8 @@
   padding-right: 80px;
   font-size: 18px;
   border-radius: 7px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 textarea {
@@ -37,6 +49,7 @@ textarea::placeholder,
 
 .input-form {
   position: relative;
+  margin-right: 10px;
 }
 
 .icon-btn {
@@ -69,7 +82,7 @@ textarea::placeholder,
 .output-box {
   position: relative;
   box-shadow: 2px 5px 10px -5px rgba(0, 0, 0, 0.75);
-  margin-top: 40px;
+  margin-top: 50px;
   width: 500px;
 }
 
@@ -97,6 +110,14 @@ textarea::placeholder,
   color: #ff1234;
 }
 
+.copy {
+  margin-left: 440px;
+  margin-top: 110px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
 @media (max-width: 1279px) {
   .translator {
     width: 100%;
@@ -112,4 +133,9 @@ textarea::placeholder,
   .row-wrapper {
     flex-direction: column;
   }
+}
+
+.form-select {
+  width: 40%;
+  margin-bottom: 13px;
 }

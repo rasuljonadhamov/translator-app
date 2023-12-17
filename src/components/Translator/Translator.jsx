@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaRegCopy } from "react-icons/fa6";
 import "./Translator.css";
 
 function Translator() {
@@ -8,7 +9,6 @@ function Translator() {
   const [inputText, setInputText] = useState("");
 
   const translate = () => {
-    console.log(outputLang);
     const url =
       "https://google-translate1.p.rapidapi.com/language/translate/v2";
     const options = {
@@ -38,6 +38,11 @@ function Translator() {
       })
       .catch((err) => console.log(err));
   };
+
+  function handleCopy() {
+    navigator.clipboard.writeText(translatedText);
+  }
+
   return (
     <div className="calculator">
       <div className="row-wrapper">
@@ -68,7 +73,6 @@ function Translator() {
               placeholder="Enter text (Select a languange)"
               onChange={(e) => {
                 setInputText(e.target.value);
-                console.log(inputText);
               }}
             ></textarea>
           </form>
@@ -81,10 +85,11 @@ function Translator() {
               className="form-select form-select-sm"
               onChange={(e) => setOutputLang(e.target.value)}
             >
-              <option value="ar">Arabic</option>
               <option value="en">English</option>
-              <option value="fr">France</option>
               <option value="ru">Russia</option>
+              <option value="fr">France</option>
+              <option value="uz">Uzbekcha</option>
+              <option value="ar">Arabic</option>
             </select>
           </div>
           <p className="text-box output-box">
@@ -93,6 +98,9 @@ function Translator() {
             ) : (
               translatedText
             )}
+            <button className="copy" onClick={handleCopy}>
+              <FaRegCopy />
+            </button>
           </p>
         </div>
       </div>
