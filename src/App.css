@@ -32,3 +32,11 @@
   margin-top: 50px;
   margin-left: 1200px;
 }
+
+.home-nav {
+  text-decoration: none;
+  color: #000;
+  display: inline-block;
+  width: 100%;
+  padding: 20px;
+}

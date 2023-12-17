@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { FaRegCopy } from "react-icons/fa6";
 import "./Translator.css";
 import { Link } from "react-router-dom";
@@ -123,12 +123,14 @@ function Translator() {
             <button className="btn-like" onClick={incrementLikes}>
               Like
             </button>
-            <span className="likes-count">{likes} Likes</span>
+            
           </div>
-
-          <Link to="/liked-texts">Go to Liked Texts</Link>
         </div>
       </div>
+
+      <Link to="/liked-texts" className="link">
+        Go to Liked Texts
+      </Link>
     </div>
   );
 }
