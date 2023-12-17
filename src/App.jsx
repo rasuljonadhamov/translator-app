@@ -1,21 +1,17 @@
-import { useState } from "react";
+import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Translator from "./components/Translator/Translator";
+import Home from "./components/Routes/Home";
+import LikedTexts from "./components/Liked/Liked";
 
 function App() {
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
-    <div className={`app ${theme === "dark" ? "dark-theme" : ""}`}>
-      <button className="btn btn-toggle-theme theme-btn" onClick={toggleTheme}>
-        Toggle Theme
-      </button>
+    <div>
+      
 
-      <Translator />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/liked-texts" component={LikedTexts} />
+      </Routes>
     </div>
   );
 }

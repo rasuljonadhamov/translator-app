@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FaRegCopy } from "react-icons/fa6";
 import "./Translator.css";
+import { Link } from "react-router-dom";
 
 function Translator() {
   const [translatedText, setTranslatedText] = useState("");
-  const [outputLang, setOutputLang] = useState("ar");
+  const [outputLang, setOutputLang] = useState("en");
   const [inputLang, setInputLang] = useState("uz");
   const [inputText, setInputText] = useState("");
+  const [likes, setLikes] = useState(0);
 
   const translate = () => {
     const url =
@@ -42,6 +44,21 @@ function Translator() {
   function handleCopy() {
     navigator.clipboard.writeText(translatedText);
   }
+
+  const incrementLikes = () => {
+    const likedText = {
+      text: translatedText,
+      likes: likes + 1,
+    };
+    console.log(likedText);
+    setLikes(likes + 1);
+
+    const likedTexts = JSON.parse(localStorage.getItem("likedTexts")) || [];
+    localStorage.setItem(
+      "likedTexts",
+      JSON.stringify([...likedTexts, likedText])
+    );
+  };
 
   return (
     <div className="calculator">
@@ -102,6 +119,14 @@ function Translator() {
               <FaRegCopy />
             </button>
           </p>
+          <div className="likes-section">
+            <button className="btn-like" onClick={incrementLikes}>
+              Like
+            </button>
+            <span className="likes-count">{likes} Likes</span>
+          </div>
+
+          <Link to="/liked-texts">Go to Liked Texts</Link>
         </div>
       </div>
     </div>
